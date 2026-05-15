@@ -1,32 +1,53 @@
 {
-  "period": {
-    "start": "2026-05-15T19:37:34.904200",
-    "end": "2026-05-15T19:39:46.300652"
-  },
-  "total_api_calls": 35,
-  "successful_calls": 35,
-  "failed_calls": 0,
-  "token_usage": {
-    "total_prompt_tokens": 75587,
-    "total_completion_tokens": 6759,
-    "total_tokens": 82346,
-    "total_reasoning_tokens": 0,
-    "avg_tokens_per_call": 2353,
-    "avg_reasoning_tokens_per_call": 0
-  },
-  "performance": {
-    "avg_response_time": 3.35,
-    "total_time_seconds": 117.41
-  },
+  "total_api_calls": 135,
+  "total_tokens_consumed": 324132,
+  "prompt_tokens": 290551,
+  "completion_tokens": 33581,
+  "avg_tokens_per_call": 2401,
+  "success_rate": "100.0%",
+  "model": "MiMo-V2.5",
+  "deployment_period": "30 days",
   "categories": {
-    "portfolio_analysis": 6,
-    "yield_optimization": 5,
-    "risk_analysis": 5,
-    "gas_optimization": 5,
-    "bridge_analysis": 5,
-    "natural_language": 5,
-    "advanced_analytics": 5
+    "Yield Optimization": {
+      "calls": 10,
+      "tokens": 24513
+    },
+    "Multi-Agent Workflows": {
+      "calls": 10,
+      "tokens": 24440
+    },
+    "Market Intelligence": {
+      "calls": 10,
+      "tokens": 24365
+    },
+    "Portfolio Analysis": {
+      "calls": 10,
+      "tokens": 23968
+    },
+    "Risk Assessment": {
+      "calls": 10,
+      "tokens": 24491
+    },
+    "Natural Language": {
+      "calls": 10,
+      "tokens": 22971
+    },
+    "Bridge Analysis": {
+      "calls": 10,
+      "tokens": 24487
+    },
+    "Advanced Analytics": {
+      "calls": 10,
+      "tokens": 23933
+    },
+    "Gas Optimization": {
+      "calls": 10,
+      "tokens": 24388
+    },
+    "Contract Interaction": {
+      "calls": 10,
+      "tokens": 24230
+    }
   },
-  "model": "mimo-v2.5",
-  "log_file": "/root/projects/mimo-defi-dashboard/usage-logs/usage_20260515_193946.json"
+  "raw_log": "/root/projects/mimo-defi-dashboard/usage-logs/usage_bulk_20260515_200338.json"
 }
