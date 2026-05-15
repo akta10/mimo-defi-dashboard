@@ -1,0 +1,32 @@
+{
+  "period": {
+    "start": "2026-05-15T19:37:34.904200",
+    "end": "2026-05-15T19:39:46.300652"
+  },
+  "total_api_calls": 35,
+  "successful_calls": 35,
+  "failed_calls": 0,
+  "token_usage": {
+    "total_prompt_tokens": 75587,
+    "total_completion_tokens": 6759,
+    "total_tokens": 82346,
+    "total_reasoning_tokens": 0,
+    "avg_tokens_per_call": 2353,
+    "avg_reasoning_tokens_per_call": 0
+  },
+  "performance": {
+    "avg_response_time": 3.35,
+    "total_time_seconds": 117.41
+  },
+  "categories": {
+    "portfolio_analysis": 6,
+    "yield_optimization": 5,
+    "risk_analysis": 5,
+    "gas_optimization": 5,
+    "bridge_analysis": 5,
+    "natural_language": 5,
+    "advanced_analytics": 5
+  },
+  "model": "mimo-v2.5",
+  "log_file": "/root/projects/mimo-defi-dashboard/usage-logs/usage_20260515_193946.json"
+}
