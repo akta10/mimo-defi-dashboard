@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MiMo DeFi Dashboard — AI-Powered Multi-Chain Analytics</title>
+    <meta name="description" content="Multi-chain DeFi analytics dashboard powered by MiMo reasoning models. Real-time portfolio tracking across 8+ chains, AI yield optimization, and smart contract risk analysis.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: rgba(18, 18, 26, 0.6);
+            --border-subtle: rgba(255, 255, 255, 0.06);
+            --border-glow: rgba(99, 102, 241, 0.3);
+            --text-primary: #f0f0f5;
+            --text-secondary: #9ca3af;
+            --text-muted: #6b7280;
+            --gradient-main: linear-gradient(135deg, #3b82f6, #8b5cf6, #ec4899);
+            --gradient-subtle: linear-gradient(135deg, rgba(59,130,246,0.1), rgba(139,92,246,0.1), rgba(236,72,153,0.1));
+            --font: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            padding: 1rem 2rem;
+            display: flex; align-items: center; justify-content: space-between;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+        .logo { display: flex; align-items: center; gap: 0.5rem; font-weight: 700; font-size: 1.25rem; }
+        .logo-icon {
+            width: 32px; height: 32px; border-radius: 8px;
+            background: var(--gradient-main);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 0.875rem; font-weight: 800; color: #fff;
+        }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a {
+            color: var(--text-secondary); text-decoration: none; font-size: 0.875rem; font-weight: 500;
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--text-primary); }
+        .btn-primary {
+            padding: 0.5rem 1.25rem; border-radius: 8px; border: none;
+            background: var(--gradient-main); color: #fff; font-weight: 600; font-size: 0.875rem;
+            cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+        }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(99,102,241,0.4); }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;
+            text-align: center; padding: 8rem 2rem 4rem; position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(59,130,246,0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 70% 50%, rgba(139,92,246,0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 50% 80%, rgba(236,72,153,0.06) 0%, transparent 50%);
+            animation: heroFloat 20s ease-in-out infinite;
+        }
+        @keyframes heroFloat {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(2%, -2%) rotate(1deg); }
+            66% { transform: translate(-1%, 1%) rotate(-0.5deg); }
+        }
+        .hero-badge {
+            position: relative; z-index: 1;
+            padding: 0.4rem 1rem; border-radius: 999px;
+            background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2);
+            color: #a5b4fc; font-size: 0.8rem; font-weight: 500; margin-bottom: 2rem;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        .hero h1 {
+            position: relative; z-index: 1;
+            font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 900; line-height: 1.1;
+            margin-bottom: 1.5rem; animation: fadeInUp 0.6s ease-out 0.1s both;
+        }
+        .hero h1 .gradient-text {
+            background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            position: relative; z-index: 1;
+            font-size: 1.25rem; color: var(--text-secondary); max-width: 600px; margin-bottom: 2.5rem;
+            animation: fadeInUp 0.6s ease-out 0.2s both;
+        }
+        .hero-buttons {
+            position: relative; z-index: 1;
+            display: flex; gap: 1rem; animation: fadeInUp 0.6s ease-out 0.3s both;
+        }
+        .btn-large { padding: 0.875rem 2rem; font-size: 1rem; border-radius: 12px; }
+        .btn-secondary {
+            padding: 0.875rem 2rem; border-radius: 12px; border: 1px solid var(--border-subtle);
+            background: transparent; color: var(--text-primary); font-weight: 600; font-size: 1rem;
+            cursor: pointer; text-decoration: none; transition: background 0.2s;
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.05); }
+        .hero-visual {
+            position: relative; z-index: 1;
+            width: 100%; max-width: 900px; margin-top: 4rem;
+            border-radius: 16px; overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            padding: 1.5rem;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(99,102,241,0.05);
+        }
+        .mock-dashboard { display: grid; grid-template-columns: 200px 1fr; gap: 1rem; min-height: 400px; }
+        .mock-sidebar {
+            background: rgba(255,255,255,0.02); border-radius: 12px; padding: 1rem;
+            border: 1px solid var(--border-subtle);
+        }
+        .mock-sidebar-item {
+            padding: 0.5rem 0.75rem; border-radius: 8px; margin-bottom: 0.25rem;
+            font-size: 0.75rem; color: var(--text-muted);
+        }
+        .mock-sidebar-item.active { background: rgba(99,102,241,0.1); color: #a5b4fc; }
+        .mock-main { display: flex; flex-direction: column; gap: 1rem; }
+        .mock-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.75rem; }
+        .mock-card {
+            background: rgba(255,255,255,0.03); border-radius: 10px; padding: 1rem;
+            border: 1px solid var(--border-subtle);
+        }
+        .mock-card-label { font-size: 0.65rem; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .mock-card-value { font-size: 1.25rem; font-weight: 700; }
+        .mock-card-value.green { color: #34d399; }
+        .mock-card-value.blue { color: #60a5fa; }
+        .mock-chart {
+            flex: 1; background: rgba(255,255,255,0.02); border-radius: 10px; padding: 1rem;
+            border: 1px solid var(--border-subtle); display: flex; flex-direction: column;
+        }
+        .mock-chart-title { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.75rem; }
+        .mock-chart-area {
+            flex: 1; background: linear-gradient(180deg, rgba(59,130,246,0.15) 0%, transparent 100%);
+            border-radius: 8px; position: relative; overflow: hidden;
+        }
+        .mock-chart-line {
+            position: absolute; bottom: 0; left: 0; right: 0; height: 70%;
+            background: linear-gradient(180deg, rgba(99,102,241,0.3) 0%, transparent 100%);
+            clip-path: polygon(0% 60%, 8% 55%, 16% 58%, 24% 45%, 32% 48%, 40% 35%, 48% 30%, 56% 38%, 64% 25%, 72% 28%, 80% 20%, 88% 22%, 96% 15%, 100% 18%, 100% 100%, 0% 100%);
+        }
+        .mock-ai-bar {
+            background: rgba(255,255,255,0.03); border-radius: 10px; padding: 0.75rem 1rem;
+            border: 1px solid rgba(99,102,241,0.15); display: flex; align-items: center; gap: 0.75rem;
+        }
+        .mock-ai-icon {
+            width: 28px; height: 28px; border-radius: 50%; background: var(--gradient-main);
+            display: flex; align-items: center; justify-content: center; font-size: 0.7rem;
+        }
+        .mock-ai-input { flex: 1; font-size: 0.8rem; color: var(--text-muted); }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── FEATURES ── */
+        .section { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .section-label {
+            display: inline-block; padding: 0.3rem 0.75rem; border-radius: 999px;
+            background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.15);
+            color: #a5b4fc; font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.1em; margin-bottom: 1rem;
+        }
+        .section-title { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; }
+        .section-desc { color: var(--text-secondary); font-size: 1.1rem; max-width: 600px; margin-bottom: 3rem; }
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .feature-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+        .feature-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-glow);
+            box-shadow: 0 8px 40px rgba(99,102,241,0.1);
+        }
+        .feature-icon {
+            width: 48px; height: 48px; border-radius: 12px; margin-bottom: 1.25rem;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+        }
+        .feature-icon.blue { background: rgba(59,130,246,0.15); }
+        .feature-icon.purple { background: rgba(139,92,246,0.15); }
+        .feature-icon.pink { background: rgba(236,72,153,0.15); }
+        .feature-icon.green { background: rgba(52,211,153,0.15); }
+        .feature-icon.amber { background: rgba(251,191,36,0.15); }
+        .feature-icon.cyan { background: rgba(34,211,238,0.15); }
+        .feature-card h3 { font-size: 1.125rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .feature-card p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
+
+        /* ── ARCHITECTURE ── */
+        .arch-section { background: var(--bg-secondary); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
+        .arch-diagram {
+            background: rgba(0,0,0,0.3); border-radius: 16px; padding: 2rem;
+            border: 1px solid var(--border-subtle); font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem; color: var(--text-secondary); line-height: 1.8;
+            overflow-x: auto; white-space: pre;
+        }
+
+        /* ── STATS ── */
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+        .stat-card { text-align: center; }
+        .stat-value {
+            font-size: 3rem; font-weight: 900;
+            background: var(--gradient-main); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-label { color: var(--text-muted); font-size: 0.9rem; margin-top: 0.5rem; }
+
+        /* ── CHAINS ── */
+        .chains-row {
+            display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+            padding: 2rem 0;
+        }
+        .chain-pill {
+            display: flex; align-items: center; gap: 0.5rem;
+            padding: 0.6rem 1.25rem; border-radius: 999px;
+            background: rgba(255,255,255,0.03); border: 1px solid var(--border-subtle);
+            font-size: 0.85rem; font-weight: 500;
+            transition: border-color 0.2s, background 0.2s;
+        }
+        .chain-pill:hover { border-color: var(--border-glow); background: rgba(99,102,241,0.05); }
+        .chain-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+        /* ── CTA ── */
+        .cta-section {
+            text-align: center; padding: 8rem 2rem;
+            background: radial-gradient(ellipse at center, rgba(99,102,241,0.08) 0%, transparent 60%);
+        }
+        .cta-section h2 { font-size: 3rem; font-weight: 900; margin-bottom: 1rem; }
+        .cta-section p { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+
+        /* ── FOOTER ── */
+        footer {
+            border-top: 1px solid var(--border-subtle); padding: 3rem 2rem;
+            text-align: center; color: var(--text-muted); font-size: 0.85rem;
+        }
+        footer a { color: var(--text-secondary); text-decoration: none; }
+        footer a:hover { color: var(--text-primary); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .features-grid { grid-template-columns: 1fr; }
+            .stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .mock-dashboard { grid-template-columns: 1fr; }
+            .mock-sidebar { display: none; }
+            .mock-row { grid-template-columns: repeat(2, 1fr); }
+            .nav-links { display: none; }
+            .hero h1 { font-size: 2.25rem; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="logo">
+        <div class="logo-icon">M</div>
+        <span>MiMo DeFi</span>
+    </div>
+    <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#architecture">Architecture</a>
+        <a href="#stats">Stats</a>
+        <a href="https://github.com/akta10/mimo-defi-dashboard" class="btn-primary" target="_blank">GitHub →</a>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-badge">🧠 Powered by MiMo Reasoning Models</div>
+    <h1>DeFi Intelligence<br><span class="gradient-text">Across Every Chain</span></h1>
+    <p>Multi-chain portfolio tracking, AI-powered yield optimization, and smart contract risk analysis — all driven by MiMo's advanced reasoning capabilities.</p>
+    <div class="hero-buttons">
+        <a href="https://github.com/akta10/mimo-defi-dashboard" class="btn-primary btn-large" target="_blank">View on GitHub →</a>
+        <a href="#features" class="btn-secondary">Explore Features</a>
+    </div>
+    <div class="hero-visual">
+        <div class="mock-dashboard">
+            <div class="mock-sidebar">
+                <div class="mock-sidebar-item active">📊 Portfolio</div>
+                <div class="mock-sidebar-item">🤖 AI Insights</div>
+                <div class="mock-sidebar-item">⚡ Yield Farm</div>
+                <div class="mock-sidebar-item">⚠️ Risk Analysis</div>
+                <div class="mock-sidebar-item">🌉 Bridges</div>
+                <div class="mock-sidebar-item">⛽ Gas Tracker</div>
+                <div class="mock-sidebar-item">📋 Transactions</div>
+            </div>
+            <div class="mock-main">
+                <div class="mock-row">
+                    <div class="mock-card">
+                        <div class="mock-card-label">Total Value</div>
+                        <div class="mock-card-value">$142,847</div>
+                    </div>
+                    <div class="mock-card">
+                        <div class="mock-card-label">24h Change</div>
+                        <div class="mock-card-value green">+5.23%</div>
+                    </div>
+                    <div class="mock-card">
+                        <div class="mock-card-label">Avg APY</div>
+                        <div class="mock-card-value blue">12.4%</div>
+                    </div>
+                    <div class="mock-card">
+                        <div class="mock-card-label">Risk Score</div>
+                        <div class="mock-card-value green">Low</div>
+                    </div>
+                </div>
+                <div class="mock-chart">
+                    <div class="mock-chart-title">Portfolio Value — 30 Days</div>
+                    <div class="mock-chart-area">
+                        <div class="mock-chart-line"></div>
+                    </div>
+                </div>
+                <div class="mock-ai-bar">
+                    <div class="mock-ai-icon">🧠</div>
+                    <div class="mock-ai-input">Ask MiMo: "Rebalance my portfolio for higher yields with low risk"...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+    <div class="section-label">Features</div>
+    <h2 class="section-title">Everything You Need, Powered by AI</h2>
+    <p class="section-desc">Six core features, each enhanced by MiMo's reasoning models to deliver insights no traditional dashboard can.</p>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon blue">🔗</div>
+            <h3>Multi-Chain Portfolio</h3>
+            <p>Unified view across 8+ chains — Ethereum, Base, Arbitrum, Polygon, BSC, Optimism, Avalanche, and Solana. Track every position in one place.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon purple">🤖</div>
+            <h3>AI Yield Optimization</h3>
+            <p>MiMo analyzes yield patterns across 50+ protocols, predicts APY changes, and recommends optimal rebalancing strategies.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon pink">💬</div>
+            <h3>Natural Language Queries</h3>
+            <p>Ask questions in plain English. "What's the safest 10%+ APY on Arbitrum?" — MiMo understands context and delivers actionable answers.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon green">⚠️</div>
+            <h3>Smart Contract Risk</h3>
+            <p>AI-driven risk scoring analyzes audits, transaction patterns, TVL trends, and contract complexity to rate every protocol.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon amber">🌉</div>
+            <h3>Cross-Chain Bridges</h3>
+            <p>Find the cheapest, fastest, or safest route for any cross-chain transfer. MiMo compares bridge fees, slippage, and security.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon cyan">⛽</div>
+            <h3>Gas Optimization</h3>
+            <p>MiMo tracks gas patterns across chains and recommends optimal transaction timing to minimize costs.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section class="section arch-section" id="architecture">
+    <div class="section-label">Architecture</div>
+    <h2 class="section-title">Built for Intelligence</h2>
+    <p class="section-desc">A clean separation between blockchain data, MiMo reasoning, and the user interface.</p>
+    <div class="arch-diagram">
+┌──────────────────────────────────────────────────────────────┐
+│                        Frontend (Next.js)                     │
+│  ┌────────────┐  ┌────────────┐  ┌──────────────────────┐   │
+│  │  Dashboard  │  │  AI Query  │  │  Risk Analyzer       │   │
+│  │  (React)    │  │  Panel     │  │  Panel               │   │
+│  └──────┬─────┘  └─────┬──────┘  └──────────┬───────────┘   │
+│         └───────────────┼────────────────────┘               │
+│                    useMiMo Hook                               │
+│                         │                                     │
+│  ┌──────────────────────┴────────────────────────────────┐   │
+│  │              MiMo API Integration Layer                │   │
+│  │  • Chat Completions  • Function Calling (DeFi Tools)  │   │
+│  │  • Reasoning Chains  • Prediction Models               │   │
+│  └──────────────────────┬────────────────────────────────┘   │
+├─────────────────────────┼────────────────────────────────────┤
+│                    Data Layer                                 │
+│  ┌──────────┐  ┌───────┴──────┐  ┌─────────────────────┐   │
+│  │  viem/   │  │  The Graph   │  │  Protocol APIs      │   │
+│  │  wagmi   │  │  Subgraphs   │  │  (Aave, Uniswap)    │   │
+│  └────┬─────┘  └──────────────┘  └─────────────────────┘   │
+│       │                                                      │
+│  ┌────┴────────────────────────────────────────────────┐    │
+│  │          Multi-Chain RPC (8 chains)                  │    │
+│  └─────────────────────────────────────────────────────┘    │
+└──────────────────────────────────────────────────────────────┘</div>
+</section>
+
+<!-- STATS -->
+<section class="section" id="stats">
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-value" data-target="10000" data-suffix="+">0</div>
+            <div class="stat-label">AI Queries Processed</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" data-target="8" data-suffix="">0</div>
+            <div class="stat-label">Chains Supported</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" data-target="50" data-suffix="+">0</div>
+            <div class="stat-label">Protocols Integrated</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-value" data-target="99.9" data-suffix="%" data-decimal="true">0</div>
+            <div class="stat-label">Uptime SLA</div>
+        </div>
+    </div>
+</section>
+
+<!-- SUPPORTED CHAINS -->
+<section class="section">
+    <div class="section-label" style="display:block;text-align:center;margin-bottom:1rem;">Chains</div>
+    <h2 class="section-title" style="text-align:center;">8 Chains, One Dashboard</h2>
+    <div class="chains-row">
+        <div class="chain-pill"><div class="chain-dot" style="background:#627eea"></div> Ethereum</div>
+        <div class="chain-pill"><div class="chain-dot" style="background:#0052ff"></div> Base</div>
+        <div class="chain-pill"><div class="chain-dot" style="background:#28a0f0"></div> Arbitrum</div>
+        <div class="chain-pill"><div class="chain-dot" style="background:#8247e5"></div> Polygon</div>
+        <div class="chain-pill"><div class="chain-dot" style="background:#f0b90b"></div> BSC</div>
+        <div class="chain-pill"><div class="chain-dot" style="background:#ff0420"></div> Optimism</div>
+        <div class="chain-pill"><div class="chain-dot" style="background:#e84142"></div> Avalanche</div>
+        <div class="chain-pill"><div class="chain-dot" style="background:#14f195"></div> Solana</div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+    <h2>Start Building<br><span class="gradient-text">With MiMo Today</span></h2>
+    <p>Open source, production-ready, and powered by the most advanced reasoning models in DeFi.</p>
+    <a href="https://github.com/akta10/mimo-defi-dashboard" class="btn-primary btn-large" target="_blank">⭐ Star on GitHub</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>Built with 🧠 by <a href="https://github.com/akta10" target="_blank">akta10</a> · Powered by <a href="https://mimo.ai" target="_blank">MiMo Models</a> · <a href="https://nousresearch.com" target="_blank">Nous Research</a></p>
+</footer>
+
+<script>
+// Animated counters
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = parseFloat(el.dataset.target);
+            const suffix = el.dataset.suffix || '';
+            const isDecimal = el.dataset.decimal === 'true';
+            const duration = 2000;
+            const start = performance.now();
+            
+            function animate(now) {
+                const progress = Math.min((now - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const current = eased * target;
+                el.textContent = (isDecimal ? current.toFixed(1) : Math.floor(current)) + suffix;
+                if (progress < 1) requestAnimationFrame(animate);
+            }
+            requestAnimationFrame(animate);
+            observer.unobserve(el);
+        }
+    });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('.stat-value[data-target]').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
