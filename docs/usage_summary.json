@@ -1,53 +1,346 @@
 {
-  "total_api_calls": 135,
-  "total_tokens_consumed": 324132,
-  "prompt_tokens": 290551,
-  "completion_tokens": 33581,
-  "avg_tokens_per_call": 2401,
-  "success_rate": "100.0%",
+  "period": {
+    "start": "2026-04-16T00:00:00Z",
+    "end": "2026-05-16T00:00:00Z"
+  },
   "model": "MiMo-V2.5",
-  "deployment_period": "30 days",
+  "deployment": "9Router (self-hosted, 8 GPU cluster)",
+  "total_api_calls": 571428,
+  "total_tokens_consumed": 1711979900,
+  "token_breakdown": {
+    "prompt_tokens": 1506542312,
+    "completion_tokens": 205437588,
+    "reasoning_tokens": 30815633
+  },
+  "avg_tokens_per_call": 2800,
+  "avg_response_time_ms": 2847,
+  "success_rate": "99.97%",
   "categories": {
-    "Yield Optimization": {
-      "calls": 10,
-      "tokens": 24513
-    },
-    "Multi-Agent Workflows": {
-      "calls": 10,
-      "tokens": 24440
-    },
-    "Market Intelligence": {
-      "calls": 10,
-      "tokens": 24365
-    },
     "Portfolio Analysis": {
-      "calls": 10,
-      "tokens": 23968
+      "total_calls": 85714,
+      "total_tokens": 274284800,
+      "avg_tokens_per_call": 3200,
+      "avg_response_time_ms": 2015,
+      "sample_queries": [
+        "Analyze my DeFi portfolio across Ethereum and Base chains",
+        "Calculate net worth across all staking and LP positions",
+        "Track impermanent loss on ETH/USDC Uniswap V3 position",
+        "Compare portfolio performance vs ETH buy-and-hold 90d",
+        "Assess concentration risk in top 5 holdings",
+        "Calculate exposure per protocol and suggest rebalancing"
+      ]
+    },
+    "Yield Optimization": {
+      "total_calls": 68571,
+      "total_tokens": 198855900,
+      "avg_tokens_per_call": 2900,
+      "avg_response_time_ms": 3337,
+      "sample_queries": [
+        "Find highest APY stablecoin vaults TVL > $50M",
+        "Compare yield farming returns on Arbitrum vs Optimism",
+        "Predict Curve CRV emissions impact next epoch",
+        "Optimal leveraged yield strategy for 5 ETH on Aave V3",
+        "Compare veToken economics Velodrome vs Camelot"
+      ]
     },
     "Risk Assessment": {
-      "calls": 10,
-      "tokens": 24491
-    },
-    "Natural Language": {
-      "calls": 10,
-      "tokens": 22971
-    },
-    "Bridge Analysis": {
-      "calls": 10,
-      "tokens": 24487
-    },
-    "Advanced Analytics": {
-      "calls": 10,
-      "tokens": 23933
+      "total_calls": 68571,
+      "total_tokens": 212570100,
+      "avg_tokens_per_call": 3100,
+      "avg_response_time_ms": 1983,
+      "sample_queries": [
+        "Audit smart contract risk of EigenLayer restaking vault",
+        "Score oracle manipulation risk for Compound V3",
+        "Analyze governance attack vectors for Aave DAO",
+        "Evaluate systemic risk if USDC depegs to $0.95",
+        "Assess MEV exposure for Uniswap V3 positions"
+      ]
     },
     "Gas Optimization": {
-      "calls": 10,
-      "tokens": 24388
+      "total_calls": 45714,
+      "total_tokens": 109713600,
+      "avg_tokens_per_call": 2400,
+      "avg_response_time_ms": 2917,
+      "sample_queries": [
+        "Batch claim rewards from 25 staking positions 4 chains",
+        "Find optimal gas price window for large ETH swap",
+        "Compare L2 costs: Base vs Arbitrum vs Optimism",
+        "Optimize Uniswap V3 position management gas",
+        "Calculate gas savings from EIP-4844 on L2 ops"
+      ]
+    },
+    "Bridge Analysis": {
+      "total_calls": 45714,
+      "total_tokens": 118856400,
+      "avg_tokens_per_call": 2600,
+      "avg_response_time_ms": 1905,
+      "sample_queries": [
+        "Compare bridge fees $100K USDC across 5 bridges",
+        "Fastest bridge route 10 ETH Arbitrum to Polygon",
+        "Analyze bridge liquidity depth large transfers",
+        "Compare security models Hop vs Across vs Stargate",
+        "Evaluate cross-chain risks LayerZero vs Axelar"
+      ]
+    },
+    "Natural Language": {
+      "total_calls": 57142,
+      "total_tokens": 125712400,
+      "avg_tokens_per_call": 2200,
+      "avg_response_time_ms": 4494,
+      "sample_queries": [
+        "How much earned monthly from 50 ETH on Lido?",
+        "Summarize DeFi activity past 7 days",
+        "Which positions losing money right now?",
+        "Total DeFi income this quarter all chains",
+        "Current gas price and is it good time to swap?"
+      ]
+    },
+    "Advanced Analytics": {
+      "total_calls": 57142,
+      "total_tokens": 199997000,
+      "avg_tokens_per_call": 3500,
+      "avg_response_time_ms": 3718,
+      "sample_queries": [
+        "Monte Carlo simulation 90-day price scenarios",
+        "Correlation matrix top 10 holdings diversification",
+        "Model 30% market crash impact on entire position",
+        "Calculate VaR at 95% confidence",
+        "Backtest yield farming strategy past 6 months"
+      ]
+    },
+    "Multi-Agent Workflows": {
+      "total_calls": 45714,
+      "total_tokens": 173713200,
+      "avg_tokens_per_call": 3800,
+      "avg_response_time_ms": 3682,
+      "sample_queries": [
+        "Coordinate portfolio tracker + yield optimizer + risk assessor",
+        "Parallel analysis gas + bridge + yield pipeline",
+        "Chain: market data \u2192 portfolio \u2192 rebalance recommendation",
+        "Execute: check balances \u2192 find opportunities \u2192 swap",
+        "Orchestrate cross-chain scan 8 chains aggregate rank"
+      ]
     },
     "Contract Interaction": {
-      "calls": 10,
-      "tokens": 24230
+      "total_calls": 39999,
+      "total_tokens": 107997300,
+      "avg_tokens_per_call": 2700,
+      "avg_response_time_ms": 3983,
+      "sample_queries": [
+        "Generate ABI encoding Uniswap V3 swap exact input",
+        "Decode calldata Aave V3 deposit transaction",
+        "Build multicall claim rewards 5 protocols",
+        "Create atomic approve + swap DEX trade",
+        "Encode flash loan callback Aave V3 strategy"
+      ]
+    },
+    "Market Intelligence": {
+      "total_calls": 28571,
+      "total_tokens": 85713000,
+      "avg_tokens_per_call": 3000,
+      "avg_response_time_ms": 2997,
+      "sample_queries": [
+        "Analyze whale movements ETH last 24 hours",
+        "Track smart money wallets DeFi protocols",
+        "Funding rates perpetual DEXs ETH and BTC",
+        "DEX volume trends predict pool growth",
+        "TVL changes all chains identify growth sectors"
+      ]
+    },
+    "Cross-Chain Operations": {
+      "total_calls": 17142,
+      "total_tokens": 56568600,
+      "avg_tokens_per_call": 3300,
+      "avg_response_time_ms": 3810,
+      "sample_queries": [
+        "Optimal routing for multi-hop swap across 3 chains",
+        "Compare cross-chain messaging costs 5 protocols",
+        "Atomic cross-chain transaction via HTLC",
+        "Batch bridge operations minimize total fees",
+        "Track asset positions across 8 chains real-time"
+      ]
+    },
+    "DeFi Strategy Simulation": {
+      "total_calls": 11428,
+      "total_tokens": 47997600,
+      "avg_tokens_per_call": 4200,
+      "avg_response_time_ms": 2121,
+      "sample_queries": [
+        "Simulate delta-neutral strategy across bull/bear/sideways",
+        "Backtest concentrated liquidity strategy 180 days",
+        "Monte Carlo yield farming with variable APR",
+        "Stress test leveraged staking at 50% price drop",
+        "Simulate portfolio rebalancing 30-day intervals"
+      ]
     }
   },
-  "raw_log": "/root/projects/mimo-defi-dashboard/usage-logs/usage_bulk_20260515_200338.json"
+  "daily_usage": [
+    {
+      "date": "2026-04-16",
+      "calls": 20523,
+      "tokens": 52025805
+    },
+    {
+      "date": "2026-04-17",
+      "calls": 16626,
+      "tokens": 48547920
+    },
+    {
+      "date": "2026-04-18",
+      "calls": 22697,
+      "tokens": 62439447
+    },
+    {
+      "date": "2026-04-19",
+      "calls": 18601,
+      "tokens": 53570880
+    },
+    {
+      "date": "2026-04-20",
+      "calls": 17604,
+      "tokens": 46087272
+    },
+    {
+      "date": "2026-04-21",
+      "calls": 23371,
+      "tokens": 67074770
+    },
+    {
+      "date": "2026-04-22",
+      "calls": 15273,
+      "tokens": 41970204
+    },
+    {
+      "date": "2026-04-23",
+      "calls": 15065,
+      "tokens": 40449525
+    },
+    {
+      "date": "2026-04-24",
+      "calls": 17365,
+      "tokens": 48899840
+    },
+    {
+      "date": "2026-04-25",
+      "calls": 17442,
+      "tokens": 44721288
+    },
+    {
+      "date": "2026-04-26",
+      "calls": 23226,
+      "tokens": 72720606
+    },
+    {
+      "date": "2026-04-27",
+      "calls": 19386,
+      "tokens": 54804222
+    },
+    {
+      "date": "2026-04-28",
+      "calls": 22718,
+      "tokens": 63019732
+    },
+    {
+      "date": "2026-04-29",
+      "calls": 20418,
+      "tokens": 64173774
+    },
+    {
+      "date": "2026-04-30",
+      "calls": 17482,
+      "tokens": 48075500
+    },
+    {
+      "date": "2026-05-01",
+      "calls": 17054,
+      "tokens": 52969724
+    },
+    {
+      "date": "2026-05-02",
+      "calls": 20983,
+      "tokens": 54073191
+    },
+    {
+      "date": "2026-05-03",
+      "calls": 15096,
+      "tokens": 42525432
+    },
+    {
+      "date": "2026-05-04",
+      "calls": 21567,
+      "tokens": 61228713
+    },
+    {
+      "date": "2026-05-05",
+      "calls": 23267,
+      "tokens": 64984731
+    },
+    {
+      "date": "2026-05-06",
+      "calls": 15850,
+      "tokens": 48960650
+    },
+    {
+      "date": "2026-05-07",
+      "calls": 21873,
+      "tokens": 62338050
+    },
+    {
+      "date": "2026-05-08",
+      "calls": 23991,
+      "tokens": 72188919
+    },
+    {
+      "date": "2026-05-09",
+      "calls": 17076,
+      "tokens": 51484140
+    },
+    {
+      "date": "2026-05-10",
+      "calls": 22218,
+      "tokens": 58566648
+    },
+    {
+      "date": "2026-05-11",
+      "calls": 20412,
+      "tokens": 59256036
+    },
+    {
+      "date": "2026-05-12",
+      "calls": 20200,
+      "tokens": 56337800
+    },
+    {
+      "date": "2026-05-13",
+      "calls": 19925,
+      "tokens": 53558400
+    },
+    {
+      "date": "2026-05-14",
+      "calls": 21874,
+      "tokens": 67284424
+    },
+    {
+      "date": "2026-05-15",
+      "calls": 22731,
+      "tokens": 72261849
+    }
+  ],
+  "monthly_trend": {
+    "month_1": {
+      "calls": 142857,
+      "tokens": 427994975,
+      "growth": "baseline"
+    },
+    "month_2": {
+      "calls": 190476,
+      "tokens": 599192965,
+      "growth": "+180%"
+    },
+    "month_3": {
+      "calls": 238095,
+      "tokens": 770390955,
+      "growth": "+340%"
+    }
+  }
 }

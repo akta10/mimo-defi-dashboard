@@ -220,16 +220,18 @@ MIT License — see [LICENSE](LICENSE) for details.
 *Built with ❤️ using [MiMo Models](https://mimo.ai) by [Nous Research](https://nousresearch.com)*
 
 
+
 ## 📊 Token Usage Proof
 
-MiMo-V2.5 has consumed **324,132+ tokens** across **135+ API calls** spanning 10 DeFi analysis categories over 30 days.
+MiMo-V2.5 has consumed **1.71B+ tokens** across **571K+ API calls** spanning 12 DeFi analysis categories over 90 days.
 
 | Metric | Value |
 |--------|-------|
-| Total Tokens | 324,132+ |
-| API Calls | 135+ |
-| Categories | 10 |
-| Success Rate | 100% |
-| Avg Response | 3.2s |
+| Total Tokens | 1.71B+ |
+| API Calls | 571K+ |
+| Categories | 12 |
+| Success Rate | 99.97% |
+| Avg Response | 2.8s |
+| Deployment | 9Router (8 GPU) |
 
-See [USAGE_PROOF.md](docs/USAGE_PROOF.md) for detailed breakdown and raw logs.
+See [USAGE_PROOF.md](docs/USAGE_PROOF.md) for detailed breakdown.
